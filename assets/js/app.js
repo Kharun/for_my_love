@@ -24,7 +24,6 @@ noBtn.addEventListener("click", () => {
   setTimeout(() => {
     currentIndex = (currentIndex + 1) % gifs.length;
 
-    // сброс src для принудительной перерисовки
     gifImg.src = "";
     requestAnimationFrame(() => {
       gifImg.src = preloadedGifs[currentIndex].src;
@@ -48,12 +47,18 @@ yesBtn.addEventListener("click", () => {
   text.style.opacity = 0;
 
   setTimeout(() => {
-    text.textContent = "Спасибоооо) Что на счет свидания?";
-    text.style.color = "#ff4d6d";
-    gifImg.src = "./assets/img/final.gif";
+    gifImg.src = "";
 
-    gifImg.style.opacity = 1;
-    text.style.opacity = 1;
+    requestAnimationFrame(() => {
+      gifImg.src = "./assets/img/final.gif";
+      text.textContent = "Спасибоооо) Что на счет свидания?";
+      text.style.color = "#ff4d6d";
+
+      requestAnimationFrame(() => {
+        gifImg.style.opacity = 1;
+        text.style.opacity = 1;
+      });
+    });
 
     btnsWrapper.style.display = "none";
   }, 300);
