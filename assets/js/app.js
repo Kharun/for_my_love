@@ -24,10 +24,13 @@ noBtn.addEventListener("click", () => {
   setTimeout(() => {
     currentIndex = (currentIndex + 1) % gifs.length;
 
-    gifImg.src = preloadedGifs[currentIndex].src;
-    text.textContent = texts[currentIndex];
-
+    // сброс src для принудительной перерисовки
+    gifImg.src = "";
     requestAnimationFrame(() => {
+      gifImg.src = preloadedGifs[currentIndex].src;
+
+      text.textContent = texts[currentIndex];
+
       requestAnimationFrame(() => {
         gifImg.style.opacity = 1;
         text.style.opacity = 1;
