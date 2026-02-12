@@ -27,8 +27,12 @@ noBtn.addEventListener("click", () => {
     gifImg.src = preloadedGifs[currentIndex].src;
     text.textContent = texts[currentIndex];
 
-    gifImg.style.opacity = 1;
-    text.style.opacity = 1;
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        gifImg.style.opacity = 1;
+        text.style.opacity = 1;
+      });
+    });
 
     btnScale -= 0.2;
     if (btnScale < 0.2) btnScale = 0.2;
