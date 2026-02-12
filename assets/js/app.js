@@ -11,6 +11,12 @@ const texts = ["Ты точно уверена? 🥺", "Подумай еще р
 let currentIndex = 0;
 let btnScale = 1;
 
+const preloadedGifs = gifs.map((src) => {
+  const img = new Image();
+  img.src = src;
+  return img;
+});
+
 noBtn.addEventListener("click", () => {
   gifImg.style.opacity = 0;
   text.style.opacity = 0;
@@ -18,7 +24,7 @@ noBtn.addEventListener("click", () => {
   setTimeout(() => {
     currentIndex = (currentIndex + 1) % gifs.length;
 
-    gifImg.src = gifs[currentIndex];
+    gifImg.src = preloadedGifs[currentIndex].src;
     text.textContent = texts[currentIndex];
 
     gifImg.style.opacity = 1;
